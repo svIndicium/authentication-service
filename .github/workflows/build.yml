@@ -1,0 +1,8 @@
+name: Gradle Build
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    uses: svIndicium/Workflows/.github/workflows/gradle-build.yml@master
