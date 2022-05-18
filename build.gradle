@@ -28,8 +28,7 @@ repositories {
 
 dependencies {
     kapt "io.micronaut:micronaut-inject-java:$micronautVersion"
-    implementation "hu.indicium.dev.lib:general:0.0.3-dev"
-    implementation "hu.indicium.dev.lib:security:0.0.2-dev"
+    implementation "hu.indicium.dev.lib:general:0.0.3"
     implementation "hu.indicium.dev.services:skeleton:$skeletonVersion"
     implementation "hu.indicium.dev:model:0.0.2"
 
