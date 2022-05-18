@@ -1,0 +1,67 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.1.1"
+    id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
+    id "org.jetbrains.kotlin.kapt" version "${kotlinVersion}"
+    id "org.jetbrains.kotlin.plugin.allopen" version "${kotlinVersion}"
+    id "io.micronaut.application" version "${micronautGradlePluginVersion}"
+}
+
+group = "hu.indicium.dev.services"
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/svIndicium/*")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+dependencies {
+    kapt "io.micronaut:micronaut-inject-java:$micronautVersion"
+    implementation "hu.indicium.dev.lib:general:0.0.3-dev"
+    implementation "hu.indicium.dev.lib:security:0.0.2-dev"
+    implementation "hu.indicium.dev.services:skeleton:$skeletonVersion"
+    implementation "hu.indicium.dev:model:0.0.2"
+
+    implementation "com.kosprov.jargon2:jargon2-api:$jargon2Version"
+    implementation "com.kosprov.jargon2:jargon2-native-ri-backend:$jargon2Version"
+
+    implementation "io.projectreactor:reactor-core:3.4.14"
+}
+
+application {
+    mainClass.set("hu.indicium.dev.services.Application")
+}
+
+tasks {
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = "11"
+            javaParameters = true
+        }
+    }
+    compileTestKotlin {
+        kotlinOptions {
+            jvmTarget = "11"
+            javaParameters = true
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+allOpen {
+    annotation("io.micronaut.aop.Around")
+}

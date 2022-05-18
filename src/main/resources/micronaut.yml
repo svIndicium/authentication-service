@@ -1,0 +1,23 @@
+micronaut:
+  security:
+    token:
+      jwt:
+        generator:
+          access-token:
+            expiration: ${ACCESS_TOKEN_EXPIRATION:3600}
+          refresh-token:
+            secret: ${JWT_SECRET:Indicium-Development-JWT-Secret}
+      writer:
+        header:
+          enabled: true
+        propagation:
+          enabled: true
+    endpoints:
+      login:
+        enabled: true
+
+authentication:
+  argon2:
+    iterations: ${ARGON2_ITERATIONS:10}
+    memory: ${ARGON2_MEMORY:65536}
+    parallelism: ${ARGON2_PARALLELISM:1}
