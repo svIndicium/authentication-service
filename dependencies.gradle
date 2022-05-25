@@ -18,7 +18,7 @@ ext {
             indicium_skeleton: "hu.indicium.dev.services:skeleton:$skeletonVersion",
 
             jargon2: "com.kosprov.jargon2:jargon2-api:$jargon2Version",
-            jargon2_native: "com.kosprov.jargon2:jargon2-native-ri-backend:$jargon2Version"
+            jargon2_native: "com.kosprov.jargon2:jargon2-native-ri-backend:$jargon2Version",
 
             reactor_core: "io.projectreactor:reactor-core:$reactorVersion",
     ]

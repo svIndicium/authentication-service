@@ -35,6 +35,8 @@ dependencies {
     implementation supportDependencies.indicium_general_lib
     implementation supportDependencies.indicium_skeleton
 
+    implementation supportDependencies.jargon2
+    implementation supportDependencies.jargon2_native
 
     implementation supportDependencies.reactor_core
 }
