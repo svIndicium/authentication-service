@@ -1,9 +1,12 @@
+buildscript {
+    apply from: "dependencies.gradle"
+}
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.1.1"
-    id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
-    id "org.jetbrains.kotlin.kapt" version "${kotlinVersion}"
-    id "org.jetbrains.kotlin.plugin.allopen" version "${kotlinVersion}"
-    id "io.micronaut.application" version "${micronautGradlePluginVersion}"
+    id "com.github.johnrengelman.shadow" version "$shadowJarVersion"
+    id "org.jetbrains.kotlin.jvm" version "$kotlinVersion"
+    id "org.jetbrains.kotlin.kapt" version "$kotlinVersion"
+    id "org.jetbrains.kotlin.plugin.allopen" version "$kotlinVersion"
+    id "io.micronaut.application" version "$micronautGradlePluginVersion"
 }
 
 group = "hu.indicium.dev.services"
@@ -27,15 +30,13 @@ repositories {
 }
 
 dependencies {
-    kapt "io.micronaut:micronaut-inject-java:$micronautVersion"
-    implementation "hu.indicium.dev.lib:general:0.0.3"
-    implementation "hu.indicium.dev.services:skeleton:$skeletonVersion"
-    implementation "hu.indicium.dev:model:0.0.2"
+    kapt supportDependencies.micronaut_inject_java
 
-    implementation "com.kosprov.jargon2:jargon2-api:$jargon2Version"
-    implementation "com.kosprov.jargon2:jargon2-native-ri-backend:$jargon2Version"
+    implementation supportDependencies.indicium_general_lib
+    implementation supportDependencies.indicium_skeleton
 
-    implementation "io.projectreactor:reactor-core:3.4.14"
+
+    implementation supportDependencies.reactor_core
 }
 
 application {

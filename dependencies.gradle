@@ -1,0 +1,25 @@
+ext {
+    micronautVersion = "3.4.0"
+    micronautGradlePluginVersion = "3.4.0"
+    shadowJarVersion = "7.1.1"
+
+    kotlinVersion = "1.6.21"
+
+    generalLibVersion = "0.0.3"
+    skeletonVersion = "0.0.9"
+
+    reactorVersion = "3.4.14"
+    jargon2Version = "1.1.1"
+
+    supportDependencies = [
+            micronaut_inject_java: "io.micronaut:micronaut-inject-java",
+
+            indicium_general_lib: "hu.indicium.dev.lib:general:$generalLibVersion",
+            indicium_skeleton: "hu.indicium.dev.services:skeleton:$skeletonVersion",
+
+            jargon2: "com.kosprov.jargon2:jargon2-api:$jargon2Version",
+            jargon2_native: "com.kosprov.jargon2:jargon2-native-ri-backend:$jargon2Version"
+
+            reactor_core: "io.projectreactor:reactor-core:$reactorVersion",
+    ]
+}
