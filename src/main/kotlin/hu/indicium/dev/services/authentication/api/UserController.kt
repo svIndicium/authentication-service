@@ -19,8 +19,10 @@ class UserController(
     @Post
     suspend fun createUser(@Body user: User?): User? =
         user?.let {
-            userRepository.save(it.copy(
-                password = passwordEncoder.encode(it.password ?: "test")
-            ))
+            userRepository.save(
+                it.copy(
+                    password = passwordEncoder.encode(it.password ?: "test")
+                )
+            )
         }
 }

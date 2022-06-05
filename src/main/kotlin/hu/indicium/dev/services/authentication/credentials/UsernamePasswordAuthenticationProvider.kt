@@ -21,10 +21,18 @@ class UsernamePasswordAuthenticationProvider(
     ): Flowable<AuthenticationResponse> =
         Flowable.fromFuture(
             CoroutineScope(Default).future {
-                val username = authenticationRequest?.identity?.toString() ?: return@future AuthenticationResponse.failure(AuthenticationFailureReason.USER_NOT_FOUND)
-                val secret = authenticationRequest.secret?.toString() ?: return@future AuthenticationResponse.failure(AuthenticationFailureReason.USER_NOT_FOUND)
-                val user = userRepository.findByUsername(username) ?: return@future AuthenticationResponse.failure(AuthenticationFailureReason.USER_NOT_FOUND)
-                user.password ?: return@future AuthenticationResponse.failure(AuthenticationFailureReason.PASSWORD_EXPIRED)
+                val username =
+                    authenticationRequest?.identity?.toString() ?: return@future AuthenticationResponse.failure(
+                        AuthenticationFailureReason.USER_NOT_FOUND
+                    )
+                val secret = authenticationRequest.secret?.toString() ?: return@future AuthenticationResponse.failure(
+                    AuthenticationFailureReason.USER_NOT_FOUND
+                )
+                val user = userRepository.findByUsername(username) ?: return@future AuthenticationResponse.failure(
+                    AuthenticationFailureReason.USER_NOT_FOUND
+                )
+                user.password
+                    ?: return@future AuthenticationResponse.failure(AuthenticationFailureReason.PASSWORD_EXPIRED)
                 when (matchPassword(user, secret)) {
                     false -> return@future AuthenticationResponse.failure(AuthenticationFailureReason.USER_NOT_FOUND)
                     true -> AuthenticationResponse.success(user.username, listOf("ADMIN"), hashMapOf())

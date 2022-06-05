@@ -12,3 +12,6 @@ updates:
       - github-package-registry
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: 09:00
+      timezone: "Europe/Amsterdam"
