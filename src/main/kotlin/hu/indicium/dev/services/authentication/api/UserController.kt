@@ -21,6 +21,7 @@ class UserController(
         user?.let {
             userRepository.save(
                 it.copy(
+                    isActivated = false,
                     password = passwordEncoder.encode(it.password ?: "test")
                 )
             )

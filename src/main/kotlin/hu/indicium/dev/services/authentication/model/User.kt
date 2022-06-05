@@ -8,6 +8,7 @@ data class User(
     val username: String,
     val identifier: String,
     val email: String,
+    val isActivated: Boolean? = false,
     val password: String?,
     @BsonId val id: Id<User> = newId()
 )

@@ -33,6 +33,9 @@ class UsernamePasswordAuthenticationProvider(
                 )
                 user.password
                     ?: return@future AuthenticationResponse.failure(AuthenticationFailureReason.PASSWORD_EXPIRED)
+                if (user.isActivated == true) {
+                    return@future AuthenticationResponse.failure(AuthenticationFailureReason.USER_DISABLED)
+                }
                 when (matchPassword(user, secret)) {
                     false -> return@future AuthenticationResponse.failure(AuthenticationFailureReason.USER_NOT_FOUND)
                     true -> AuthenticationResponse.success(user.username, listOf("ADMIN"), hashMapOf())
