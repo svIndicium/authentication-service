@@ -3,7 +3,7 @@ ext {
     micronautGradlePluginVersion = "3.4.1"
     shadowJarVersion = "7.1.2"
 
-    kotlinVersion = "1.6.21"
+    kotlinVersion = "1.7.0"
 
     generalLibVersion = "0.0.3"
     skeletonVersion = "0.0.16"
